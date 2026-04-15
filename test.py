@@ -1,8 +1,11 @@
 from lib import *
 
+# K_Factore | MLFQ
+algorith = MLFQ
+
 def test_many_small():
     reset_metrics()
-    os = OS(MLFQ)
+    os = OS(algorith)
 
     processes = [
         Process(arrival_time=i, burst_time=2, deadline=20)
@@ -18,7 +21,7 @@ def test_many_small():
 
 def test_few_large():
     reset_metrics()
-    os = OS(MLFQ)
+    os = OS(algorith)
 
     processes = [
         Process(arrival_time=0, burst_time=50, deadline=100),
@@ -35,7 +38,7 @@ def test_few_large():
     
 def test_mixed():
     reset_metrics()
-    os = OS(MLFQ)
+    os = OS(algorith)
 
     processes = [
         Process(0, 5, 30),
@@ -56,7 +59,7 @@ def test_mixed():
 
 def test_starvation():
     reset_metrics()
-    os = OS(MLFQ)
+    os = OS(algorith)
 
     # long job duluan
     os.add_process(Process(0, 100, 200))

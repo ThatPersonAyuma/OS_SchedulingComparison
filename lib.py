@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Callable
 from abc import ABC, abstractmethod
 import heapq
+from graph import plot_advanced_gantt
 
 # Performa Metrik
 # 1. Mean Turnaround Time (MTT)
@@ -137,6 +138,18 @@ class OS:
         while not self.is_all_done():
             self.tick()
             self.time += 1
+        processes = [
+            {
+                "pid": p.pcb.pid,
+                "arrival": p.arrival_time,
+                "start": p.start_time,
+                "finish": p.finish_time,
+                "deadline": p.deadline
+            }
+            for p in self.all_processes
+        ]
+
+        plot_advanced_gantt(processes)
     
             
     def tick(self):
